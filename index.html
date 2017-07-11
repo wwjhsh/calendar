@@ -5,18 +5,19 @@
 	<title>日历</title>
 	<link rel="stylesheet" type="text/css" href="calendar.css"/>
 	<link rel="stylesheet" type="text/css" href="layui.css">
+	<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_89aw5gqkoeeidx6r.css">
 	<style type="text/css">
 	#calendar{
 		position: absolute;
 		width: 700px;
 		border: 1px solid #999;
 		padding-top: 10px;
-	}
-	.calendar-day tbody tr{
-		height:75px;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		user-select:none;
 	}
 	.time-choose{
-		margin-left: 400px;
+		text-align: center;
 	}
 	.time-choose .calendar-inline{
 		display: inline-block;
@@ -24,14 +25,58 @@
 	.time-choose>.calendar-inline{
 		width: 100px;
 	}
-	.layui-form input[type=checkbox], .layui-form input[type=radio], .layui-form select {
-		display: block;
+	.time-choose .calendar-last{
+		float: left;
+	}
+	.time-choose .calendar-next{
+		float: right;
+	}
+	.time-choose .calendar-next,.time-choose .calendar-last{
+		visibility:hidden;
+		padding: 0 15px;
+	}
+	.time-choose .calendar-next:hover,.time-choose .calendar-last:hover{
+		color: #999;
+		cursor:pointer;
+	}
+	.calendar-table{
+		border-collapse: collapse;
+		border-spacing: 0;
+		width: 100%;
+		margin: 10px 0;
+	}
+	.calendar-table thead tr {
+	    background-color: #f2f2f2;
+	}
+	.calendar-table tbody tr {
+	    height: 75px;
+	}
+	.calendar-table td,.calendar-table th{
+		padding: 9px 15px;
+		vertical-align: top;
+	    min-height: 20px;
+	    line-height: 20px;
+	    border: 1px solid #e2e2e2;
+	    font-size: 14px;
+	}
+
+	.calendar-table td:hover{
+		background:  #f4f4f4;
+		cursor: pointer;
+
+	}
+	.calendar-table td.forbid:hover{
+		background: #fff;
+		/*background-color: #f4f4f4 !important;*/
+		/*cursor: url("forbid.png"),auto;*/
+		cursor: not-allowed;
 	}
 	</style>
 </head>
 <body>
 	<button >按钮1号</button>
 	<button >按钮2号</button>
+	<div id="calendar" style="left: 58px; top: 30px;"><form><div class="time-choose"><div class="calendar-inline"><label>年份</label><div class="calendar-inline"><select class="calendar-year" name="year"><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017" selected="selected">2017</option></select></div></div><div class="calendar-inline"><label>月份</label><div class="calendar-inline"><select class="calendar-month" name="month"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7" selected="selected">7</option><option value="8">8</option><option value="9">9</option></select></div></div></div><table class="calendar-table calendar-day"><thead><tr><th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr></thead><tbody><tr><td class="forbid"></td><td class="forbid"></td><td class="forbid"></td><td class="forbid"></td><td class="forbid"></td><td class="forbid"></td><td>1</td></tr><tr><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr><tr><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr><tr><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr><tr><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr><tr><td>30</td><td>31</td><td class="forbid"></td><td class="forbid"></td><td class="forbid"></td><td class="forbid"></td><td class="forbid"></td></tr></tbody></table></form></div>
 	<script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript" src="calendar.js"></script>
 	<script type="text/javascript">
@@ -41,9 +86,9 @@
 				$(this).calendar({
 					targetId:               "calendar",
 					begindate:           	new Date("2012/2/02"),
-					enddate: 				new Date("2017/9/09"),
+					enddate: 				new Date("2017/11/09"),
 					choosedyear: 			2017,
-					choosedmonth: 			7
+					choosedmonth: 			9
 				});
 			});
 		});
