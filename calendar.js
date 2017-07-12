@@ -132,25 +132,7 @@ $.fn.calendar.setPicker=function($this,_this){
 		$.fn.calendar.setMonthNear($this,_this);
 	});
 	$.fn.calendar.setMonthNear($this,_this);
-}
-$.fn.calendar.setMonthNear=function($this,_this){
-	var _date01=new Date();
-	_date01.setFullYear($this._choosedyear,$this._choosedmonth-2,1);//得到上月份1号的日期
-	console.log(_date01);
-	if (($.fn.calendar.isInRange($this,Date.UTC($this._choosedyear,$this._choosedmonth-2,$.fn.calendar.getMonthDateAmount(_date01))))
-		||($.fn.calendar.isInRange($this,Date.UTC($this._choosedyear-1,11,31)))) {
-		$("#"+_this.targetId+" .calendar-last").css("visibility","visible");
-	}
-	else{
-		$("#"+_this.targetId+" .calendar-last").css("visibility","hidden");
-	}
-	if (($.fn.calendar.isInRange($this,Date.UTC($this._choosedyear,$this._choosedmonth,1)))
-		||($.fn.calendar.isInRange($this,Date.UTC($this._choosedyear+1,0,1)))) {
-		$("#"+_this.targetId+" .calendar-next").css("visibility","visible");
-	}
-	else{
-		$("#"+_this.targetId+" .calendar-next").css("visibility","hidden");
-	}
+
 	$("#"+_this.targetId+" .calendar-last").on("click",function(){
 		if ($this._choosedmonth>1) {
 			$this._choosedmonth--;
@@ -177,6 +159,26 @@ $.fn.calendar.setMonthNear=function($this,_this){
 			$.fn.calendar.setDateData($this,_this);
 		}
 	});
+}
+//上下月标志显隐
+$.fn.calendar.setMonthNear=function($this,_this){
+	var _date01=new Date();
+	_date01.setFullYear($this._choosedyear,$this._choosedmonth-2,1);//得到上月份1号的日期
+	console.log(_date01);
+	if (($.fn.calendar.isInRange($this,Date.UTC($this._choosedyear,$this._choosedmonth-2,$.fn.calendar.getMonthDateAmount(_date01))))
+		||($.fn.calendar.isInRange($this,Date.UTC($this._choosedyear-1,11,31)))) {
+		$("#"+_this.targetId+" .calendar-last").css("visibility","visible");
+	}
+	else{
+		$("#"+_this.targetId+" .calendar-last").css("visibility","hidden");
+	}
+	if (($.fn.calendar.isInRange($this,Date.UTC($this._choosedyear,$this._choosedmonth,1)))
+		||($.fn.calendar.isInRange($this,Date.UTC($this._choosedyear+1,0,1)))) {
+		$("#"+_this.targetId+" .calendar-next").css("visibility","visible");
+	}
+	else{
+		$("#"+_this.targetId+" .calendar-next").css("visibility","hidden");
+	}
 }
 //组装日历主体部分
 $.fn.calendar.setDateData=function($this,_this){
